@@ -32,6 +32,10 @@
      * The title is also displayed when the menu is collapsed
      */
     alwaysShowTitle: { type: Boolean },
+    /**
+     * 是否是登录页
+     */
+    isLogin: { type: Boolean, default: false },
   });
 
   const { prefixCls } = useDesign('app-logo');
@@ -44,6 +48,7 @@
     prefixCls,
     props.theme,
     { 'collapsed-show-title': unref(getCollapsedShowTitle) },
+    { 'flex justify-center': !props.isLogin },
   ]);
 
   const getTitleClass = computed(() => [

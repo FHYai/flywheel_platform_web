@@ -11,12 +11,12 @@ import {
 } from '/@/enums/appEnum';
 import { SIDE_BAR_BG_COLOR_LIST, HEADER_PRESET_BG_COLOR_LIST } from './designSetting';
 
-const primaryColor = '#0960bd';
+const primaryColor = '#1966FF';
 
 // ! You need to clear the browser cache after the change
 const setting: ProjectConfig = {
   // Whether to show the configuration button
-  showSettingButton: true,
+  showSettingButton: false,
 
   // Whether to show the theme switch button
   showDarkModeToggle: true,
@@ -100,13 +100,13 @@ const setting: ProjectConfig = {
     // Menu mode
     mode: MenuModeEnum.INLINE,
     // Menu type
-    type: MenuTypeEnum.SIDEBAR,
+    type: MenuTypeEnum.MIX,
     // Menu theme
     theme: ThemeEnum.DARK,
     // Split menu
     split: false,
     // Top menu layout
-    topMenuAlign: 'center',
+    topMenuAlign: 'start',
     // Fold trigger position
     trigger: TriggerEnum.HEADER,
     // Turn on accordion mode, only show a menu
@@ -121,7 +121,7 @@ const setting: ProjectConfig = {
 
   // Multi-label
   multiTabsSetting: {
-    cache: false,
+    cache: true,
     // Turn on
     show: true,
     // Is it possible to drag and drop sorting tabs
@@ -148,7 +148,7 @@ const setting: ProjectConfig = {
     openPageLoading: true,
 
     // Whether to open the top progress bar
-    openNProgress: false,
+    openNProgress: true,
   },
 
   // Whether to enable KeepAlive cache is best to close during development, otherwise the cache needs to be cleared every time
