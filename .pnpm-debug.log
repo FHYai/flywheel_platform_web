@@ -1,5 +1,9 @@
 {
-  "0 error pnpm": {
+  "0 debug pnpm:scope": {
+    "selected": 1,
+    "workspacePrefix": "/Users/edy/Desktop/test/flywheel_platform_web"
+  },
+  "1 error pnpm": {
     "code": "ERR_PNPM_UNSUPPORTED_ENGINE",
     "packageId": "/Users/edy/Desktop/test/flywheel_platform_web",
     "wanted": {
@@ -13,7 +17,7 @@
       "name": "Error",
       "message": "Unsupported engine for /Users/edy/Desktop/test/flywheel_platform_web: wanted: {\"pnpm\":\">=8.1.0\"} (current: {\"node\":\"v16.15.1\",\"pnpm\":\"6.7.6\"})",
       "code": "ERR_PNPM_UNSUPPORTED_ENGINE",
-      "stack": "Error: Unsupported engine for /Users/edy/Desktop/test/flywheel_platform_web: wanted: {\"pnpm\":\">=8.1.0\"} (current: {\"node\":\"v16.15.1\",\"pnpm\":\"6.7.6\"})\n    at Object.checkEngine [as default] (/usr/local/Cellar/pnpm/6.7.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:34666:16)\n    at Object.checkPackage (/usr/local/Cellar/pnpm/6.7.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:34810:99)\n    at Object.packageIsInstallable (/usr/local/Cellar/pnpm/6.7.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:34834:44)\n    at Object.exports2.default (/usr/local/Cellar/pnpm/6.7.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:45320:21)\n    at async run (/usr/local/Cellar/pnpm/6.7.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:124446:29)\n    at async runPnpm (/usr/local/Cellar/pnpm/6.7.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:124694:5)\n    at async /usr/local/Cellar/pnpm/6.7.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:124686:7"
+      "stack": "Error: Unsupported engine for /Users/edy/Desktop/test/flywheel_platform_web: wanted: {\"pnpm\":\">=8.1.0\"} (current: {\"node\":\"v16.15.1\",\"pnpm\":\"6.7.6\"})\n    at Object.checkEngine [as default] (/usr/local/Cellar/pnpm/6.7.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:34666:16)\n    at Object.checkPackage (/usr/local/Cellar/pnpm/6.7.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:34810:99)\n    at Object.packageIsInstallable (/usr/local/Cellar/pnpm/6.7.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:34834:44)\n    at Object.readProjectManifestOnly (/usr/local/Cellar/pnpm/6.7.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:39960:30)\n    at async Object.handler (/usr/local/Cellar/pnpm/6.7.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:120460:24)\n    at async Timeout._onTimeout (/usr/local/Cellar/pnpm/6.7.6/libexec/lib/node_modules/pnpm/dist/pnpm.cjs:124507:24)"
     }
   }
 }
