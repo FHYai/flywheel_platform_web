@@ -9,7 +9,7 @@
       </div>
     </div>
     <div  class="lg:flex lg:items-center text-center lg:text-left">
-      <img class="!mx-auto !block" :src="weatherImg" height="100" width="100"/>
+      <img class="!mx-auto !block" :src="`@/assets/images/weather/${weatherImg}`" height="100" width="100"/>
       <div>
         <div class="text-secondary">{{ todayWeatherInfo.weather }}</div>
         <div class="text-secondary">{{ todayWeatherInfo.minTemp }}℃ - {{ todayWeatherInfo.maxTemp }}℃！</div>
@@ -78,7 +78,7 @@
   });
   // 天气图片
   const weatherImg = computed(() => {
-    let url = '/@/assets/images/weather/'
+    let url = ''
     let { dayweather, nightweather } = todayWeather.value
     let imgName
     if (isNight.value) {
@@ -86,7 +86,7 @@
     } else {
       imgName = checkWeatherImg(dayweather)
     }
-    url += imgName
+    url = imgName
     return url
   })
 
