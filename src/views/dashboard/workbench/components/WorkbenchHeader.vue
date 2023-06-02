@@ -78,7 +78,7 @@
   });
   // 天气图片
   const weatherImg = computed(() => {
-    let url = '@/assets/images/weather/'
+    let url = '/@/assets/images/weather/'
     let { dayweather, nightweather } = todayWeather.value
     let imgName
     if (isNight.value) {
