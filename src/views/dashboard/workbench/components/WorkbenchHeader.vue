@@ -9,7 +9,7 @@
       </div>
     </div>
     <div  class="lg:flex lg:items-center text-center lg:text-left">
-      <img class="!mx-auto !block" :src="`@/assets/images/weather/${weatherImg}`" height="100" width="100"/>
+      <img class="!mx-auto !block" :src="weatherImg" height="100" width="100"/>
       <div>
         <div class="text-secondary">{{ todayWeatherInfo.weather }}</div>
         <div class="text-secondary">{{ todayWeatherInfo.minTemp }}℃ - {{ todayWeatherInfo.maxTemp }}℃！</div>
@@ -78,7 +78,7 @@
   });
   // 天气图片
   const weatherImg = computed(() => {
-    let url = ''
+    let url = 'https://s1.ax1x.com/2023/06/02/'
     let { dayweather, nightweather } = todayWeather.value
     let imgName
     if (isNight.value) {
@@ -86,7 +86,7 @@
     } else {
       imgName = checkWeatherImg(dayweather)
     }
-    url = imgName
+    url += imgName
     return url
   })
 
@@ -100,19 +100,19 @@
    */
   function checkWeatherImg(weather) {
     if (['晴','热','平静'].includes(weather) && weather !== '晴间多云') {
-      return 'sunny.png';
+      return 'pCSql7V.png';
     } else if (['云','阴'].includes(weather)) {
-      return 'cloudy.png';
+      return 'pCSq3kT.png';
     } else if (['风','沙','尘'].includes(weather)) {
-      return 'windy.png';
+      return 'pCSqGhF.png';
     } else if (['雪'].includes(weather)) {
-      return 'snow.png';
+      return 'pCSquXn.png';
     } else if (['雷'].includes(weather)) {
-      return 'ray.png';
+      return 'pCSqMmq.png';
     } else if (['雨'].includes(weather)) {
-      return 'rain.png';
+      return 'pCSq8tU.png';
     } else if (['雾','霾'].includes(weather)) {
-      return 'fog.png';
+      return 'pCSqQ00.png';
     }
   }
   /**
