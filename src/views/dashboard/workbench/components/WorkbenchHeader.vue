@@ -5,7 +5,6 @@
       <div class="md:ml-6 flex flex-col justify-center md:mt-0 mt-2">
         <h1 class="md:text-lg text-md text-center lg:text-left">{{ `${information.text}，${userinfo.realName}` }}</h1>
         <h1 class="md:text-lg text-md text-center lg:text-left mb-0">{{ information.content }}</h1>
-<!--        <span class="text-secondary text-center lg:text-left"> 今日{{ todayWeatherInfo.weather }}，{{ todayWeatherInfo.minTemp }}℃ - {{ todayWeatherInfo.maxTemp }}℃！ </span>-->
       </div>
     </div>
     <div  class="lg:flex lg:items-center text-center lg:text-left">
@@ -29,6 +28,13 @@
   import { Avatar } from 'ant-design-vue';
   import { useUserStore } from '/@/store/modules/user';
   import headerImg from '/@/assets/images/header.jpg';
+  import cloudy from '/@/assets/images/weather/cloudy.png';
+  import fog from '/@/assets/images/weather/fog.png';
+  import rain from '/@/assets/images/weather/rain.png';
+  import ray from '/@/assets/images/weather/ray.png';
+  import snow from '/@/assets/images/weather/snow.png';
+  import sunny from '/@/assets/images/weather/sunny.png';
+  import windy from '/@/assets/images/weather/windy.png';
   import { setCookie,getCookie } from "@/utils/docCookies";
 
   const isNight = ref(false);
@@ -52,10 +58,10 @@
       obj.content = '开始您一天的工作吧!';
     } else if (hours > 10 && hours <= 14) {
       obj.text = '中午好';
-      obj.content = '工作再忙也不要忘记吃饭哦!';
+      obj.content = '工作再忙也不要忘记吃午饭哦！';
     } else if (hours > 14 && hours <= 18) {
       obj.text = '下午好';
-      obj.content = '继续奋斗吧!';
+      obj.content = '忍住！千万不要打瞌睡，来条士力架吧！';
     } else if (hours > 18 && hours <= 24) {
       isNight.value = true;
       obj.text = '晚上好';
@@ -78,15 +84,13 @@
   });
   // 天气图片
   const weatherImg = computed(() => {
-    let url = 'https://s1.ax1x.com/2023/06/02/'
+    let url
     let { dayweather, nightweather } = todayWeather.value
-    let imgName
     if (isNight.value) {
-      imgName = checkWeatherImg(nightweather)
+      url = checkWeatherImg(nightweather)
     } else {
-      imgName = checkWeatherImg(dayweather)
+      url = checkWeatherImg(dayweather)
     }
-    url += imgName
     return url
   })
 
@@ -100,19 +104,19 @@
    */
   function checkWeatherImg(weather) {
     if (['晴','热','平静'].includes(weather) && weather !== '晴间多云') {
-      return 'pCSql7V.png';
+      return sunny;
     } else if (['云','阴'].includes(weather)) {
-      return 'pCSq3kT.png';
+      return cloudy;
     } else if (['风','沙','尘'].includes(weather)) {
-      return 'pCSqGhF.png';
+      return windy;
     } else if (['雪'].includes(weather)) {
-      return 'pCSquXn.png';
+      return snow;
     } else if (['雷'].includes(weather)) {
-      return 'pCSqMmq.png';
+      return ray;
     } else if (['雨'].includes(weather)) {
-      return 'pCSq8tU.png';
+      return rain;
     } else if (['雾','霾'].includes(weather)) {
-      return 'pCSqQ00.png';
+      return fog;
     }
   }
   /**
