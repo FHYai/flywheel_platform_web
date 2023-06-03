@@ -42,6 +42,8 @@
   const todayWeather = ref({});
   // 明日天气
   const tomorrowWeather = ref({});
+  // 天气图片
+  const weatherImg = ref(sunny);
   const userStore = useUserStore();
   const userinfo = computed(() => userStore.getUserInfo);
   // 判断当前时间属于什么范畴
@@ -82,22 +84,19 @@
     obj.minTemp = nighttemp
     return obj
   });
-  // 天气图片
-  const weatherImg = computed(() => {
-    let url
-    let { dayweather, nightweather } = todayWeather.value
-    if (isNight.value) {
-      url = checkWeatherImg(nightweather)
-    } else {
-      url = checkWeatherImg(dayweather)
-    }
-    return url
-  })
 
   onMounted(() => {
     getLocation();
   });
 
+  function getWeatherImg() {
+    let { dayweather, nightweather } = todayWeather.value
+    if (isNight.value) {
+      weatherImg.value = checkWeatherImg(nightweather)
+    } else {
+      weatherImg.value = checkWeatherImg(dayweather)
+    }
+  }
   /**
    * 判断当前天气所要展示的图片
    * @param weather  当前天气
@@ -156,6 +155,7 @@
       let weatherDataObj = JSON.parse(weatherData);
       todayWeather.value = weatherDataObj.casts[0];
       tomorrowWeather.value = weatherDataObj.casts[1];
+      getWeatherImg();
     } else {
       axios({
         url: 'https://restapi.amap.com/v3/weather/weatherInfo',
@@ -171,6 +171,7 @@
         todayWeather.value = res.data.forecasts[0].casts[0];
         tomorrowWeather.value = res.data.forecasts[0].casts[1];
         setCookie('weatherData',JSON.stringify(res.data.forecasts[0]),'h3');
+        getWeatherImg();
       });
     }
   }
