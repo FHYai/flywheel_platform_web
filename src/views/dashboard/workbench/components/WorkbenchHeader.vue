@@ -36,6 +36,7 @@
   import sunny from '/@/assets/images/weather/sunny.png';
   import windy from '/@/assets/images/weather/windy.png';
   import { setCookie,getCookie } from "@/utils/docCookies";
+  import {isEmpty} from "@/utils/is";
 
   const isNight = ref(false);
   // 今日天气
@@ -56,6 +57,7 @@
     };
     if (hours >= 0 && hours <= 10) {
       isNight.value = false;
+      getWeatherImg();
       obj.text = '早上好';
       obj.content = '开始您一天的工作吧!';
     } else if (hours > 10 && hours <= 14) {
@@ -66,6 +68,7 @@
       obj.content = '忍住！千万不要打瞌睡，来条士力架吧！';
     } else if (hours > 18 && hours <= 24) {
       isNight.value = true;
+      getWeatherImg();
       obj.text = '晚上好';
       obj.content = '早点休息哦!';
     }
@@ -92,9 +95,13 @@
   function getWeatherImg() {
     let { dayweather, nightweather } = todayWeather.value
     if (isNight.value) {
-      weatherImg.value = checkWeatherImg(nightweather)
+      if (!isEmpty(nightweather)) {
+        weatherImg.value = checkWeatherImg(nightweather)
+      }
     } else {
-      weatherImg.value = checkWeatherImg(dayweather)
+      if (!isEmpty(dayweather)) {
+        weatherImg.value = checkWeatherImg(dayweather)
+      }
     }
   }
   /**
@@ -102,19 +109,19 @@
    * @param weather  当前天气
    */
   function checkWeatherImg(weather) {
-    if (['晴','热','平静'].includes(weather) && weather !== '晴间多云') {
+    if ((weather.indexOf('晴') !== -1 || weather.indexOf('热') !== -1 || weather.indexOf('平静') !== -1 ) && weather !== '晴间多云') {
       return sunny;
-    } else if (['云','阴'].includes(weather)) {
+    } else if (weather.indexOf('云') !== -1 || weather.indexOf('阴') !== -1) {
       return cloudy;
-    } else if (['风','沙','尘'].includes(weather)) {
+    } else if (weather.indexOf('风') !== -1 || weather.indexOf('沙') !== -1 || weather.indexOf('尘') !== -1) {
       return windy;
-    } else if (['雪'].includes(weather)) {
+    } else if (weather.indexOf('雪') !== -1) {
       return snow;
-    } else if (['雷'].includes(weather)) {
+    } else if (weather.indexOf('雷') !== -1) {
       return ray;
-    } else if (['雨'].includes(weather)) {
+    } else if (weather.indexOf('雨') !== -1) {
       return rain;
-    } else if (['雾','霾'].includes(weather)) {
+    } else if (weather.indexOf('雾') !== -1 || weather.indexOf('霾') !== -1) {
       return fog;
     } else {
       return sunny;
