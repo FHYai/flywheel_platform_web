@@ -117,6 +117,8 @@
       return rain;
     } else if (['雾','霾'].includes(weather)) {
       return fog;
+    } else {
+      return sunny;
     }
   }
   /**
