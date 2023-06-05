@@ -475,6 +475,14 @@ export type ColumnChangeParam = {
   visible: boolean;
 };
 
+export const formColProps = {
+  xl: 6,
+  lg: 12,
+  md: 12,
+  xm: 24,
+  xs: 24
+}
+
 export interface InnerHandlers {
   onColumnsChange: (data: ColumnChangeParam[]) => void;
 }

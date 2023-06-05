@@ -3,7 +3,7 @@ import type { BasicTableProps, FetchParams } from '../types/table';
 import { unref, computed } from 'vue';
 import type { FormProps } from '/@/components/Form';
 import { isFunction } from '/@/utils/is';
-
+import { formColProps } from "../types/table";
 export function useTableForm(
   propsRef: ComputedRef<BasicTableProps>,
   slots: Slots,
@@ -13,6 +13,10 @@ export function useTableForm(
   const getFormProps = computed((): Partial<FormProps> => {
     const { formConfig } = unref(propsRef);
     const { submitButtonOptions } = formConfig || {};
+    formConfig?.schemas?.map(i => {
+      i.colProps = {...formColProps,...i.colProps}
+      return i
+    })
     return {
       showAdvancedButton: true,
       ...formConfig,
