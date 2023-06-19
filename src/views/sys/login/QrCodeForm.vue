@@ -17,6 +17,7 @@
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useLoginState, LoginStateEnum } from './useLogin';
   import { useUserStore } from '/@/store/modules/user';
+  import { getToken } from '/@/utils/auth';
 
   const { t } = useI18n();
   let logging = ref(false);
@@ -42,7 +43,7 @@
       const code = search.split("=")[1];
       userStore.login({
         code,
-        mode: 'none', //不要默认的错误提示
+        mode: 'message', //不要默认的错误提示
       }).then(result => {
         console.log(result)
       }).catch(err => {
@@ -55,6 +56,7 @@
    * 获取二维码
    */
   function getQrPic() {
+    logging.value = true;
     const prod = import.meta.env.VITE_GLOB_API_URL.indexOf('feilun.seeease.com') !== -1
     let _path = window.location.origin
     if (window.location.pathname.indexOf('/index.html') >= 0) {
@@ -68,5 +70,6 @@
         prod ? `https://feilun.seeease.com/fl/302.html?org=${_path}` : `https://pre.seeease.com/fl/feilun/302.html?org=${_path}`
       ), // 重定向的地址，需要进行encode
     });
+    logging.value = false;
   }
 </script>
