@@ -8,10 +8,10 @@ export enum LoginStateEnum {
   REGISTER,
   RESET_PASSWORD,
   MOBILE,
-  QR_CODE,
+  QR_CODE
 }
 
-const currentState = ref(LoginStateEnum.LOGIN);
+const currentState = ref(LoginStateEnum.QR_CODE);
 
 // 这里也可以优化
 // import { createGlobalState } from '@vueuse/core'

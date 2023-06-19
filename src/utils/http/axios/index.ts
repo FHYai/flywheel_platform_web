@@ -27,7 +27,7 @@ const { createMessage, createErrorModal, createSuccessModal } = useMessage();
 /**
  * @description: 数据处理，方便区分多种处理方式
  */
-const transform: AxiosTransform = {
+const transform = {
   /**
    * @description: 处理响应数据。如果数据不是预期格式，可直接抛出错误
    */
@@ -245,7 +245,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           // 默认将prefix 添加到url
           joinPrefix: true,
           // 是否返回原生响应头 比如：需要获取响应头时使用该属性
-          isReturnNativeResponse: false,
+          isReturnNativeResponse: true,
           // 需要对返回数据进行处理
           isTransformResponse: true,
           // post请求的时候添加参数到url
