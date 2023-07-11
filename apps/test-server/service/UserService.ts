@@ -7,12 +7,12 @@ const fakeUserInfo = {
   desc: 'manager',
   password: '123456',
   token: 'fakeToken1',
-  roles: [
-    {
-      roleName: 'Super Admin',
-      value: 'super',
-    },
-  ],
+  // roles: [
+  //   {
+  //     roleName: 'Super Admin',
+  //     value: 'super',
+  //   },
+  // ],
 };
 export default class UserService {
   async login() {

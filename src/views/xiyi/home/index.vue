@@ -1,19 +1,20 @@
 <template>
   <PageWrapper contentFullHeight>
-    <template #headerContent> <WorkbenchHeader/> </template>
+    <template #headerContent> <WorkbenchHeader :total="totalCount"/> </template>
     <div style="background: #ffffff">
       <BasicTable @register="registerTable">
         <template #toolbar>
-          <a-button type="primary" @click="handleCreate">新建表单</a-button>
+<!--          @click="handleCreate"-->
+          <a-button type="primary" >新建表单</a-button>
         </template>
         <template #bodyCell="{ column, record }">
           <template v-if="column.key === 'action'">
             <TableAction
               :actions="[
               {
+                label: '去处理',
                 icon: 'clarity:note-edit-line',
-                tooltip: '去处理',
-                onClick: handleEdit.bind(null, record)
+                onClick: handleFun.bind(null,record)
               }
             ]"
             />
@@ -28,26 +29,25 @@
   import { ref } from 'vue';
   import { PageWrapper } from '/@/components/Page';
   import WorkbenchHeader from './components/WorkbenchHeader.vue';
-  import { BasicTable, useTable } from '/@/components/Table';
+  import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { columns, searchFormSchema } from './components/tableData';
+  import {getToDoListApi} from "@/api/xiyi/home";
 
-  const loading = ref(true);
+  let totalCount = ref(0);
 
-  setTimeout(() => {
-    loading.value = false;
-  }, 1500);
-
+  function handleFun(record){
+    console.log(record,'1/23/12/312//32/13')
+  }
   /**
    * table注册
    */
-  const [registerTable, { reload }] = useTable({
+  const [registerTable, { reload,getRawDataSource }] = useTable({
     title: '待办事项',
-    rowKey: 'id',
-    showIndexColumn: false,
-    showTableSetting: true,
-    bordered: true,
+    rowKey: 'taskId',
+    resizeHeightOffset: 20,
+    // bordered: true,
     useSearchForm: true,
-    // api: accountListApi,
+    api: getToDoListApi,
     columns,
     formConfig: {
       labelWidth: 100,
@@ -58,6 +58,10 @@
       width: 120,
       title: '操作',
       dataIndex: 'action'
+    },
+    afterFetch: arg => {
+      const result = getRawDataSource();
+      totalCount.value = result.totalCount;
     }
   });
 </script>

@@ -12,12 +12,12 @@ export function createFakeUserList() {
       password: '123456',
       token: 'fakeToken1',
       homePath: '/xiyi/home',
-      roles: [
-        {
-          roleName: 'Super Admin',
-          value: 'super',
-        },
-      ],
+      // roles: [
+      //   {
+      //     roleName: 'Super Admin',
+      //     value: 'super',
+      //   },
+      // ],
     },
     {
       userId: '2',
@@ -28,12 +28,12 @@ export function createFakeUserList() {
       desc: 'tester',
       token: 'fakeToken2',
       homePath: '/xiyi/home',
-      roles: [
-        {
-          roleName: 'Tester',
-          value: 'test',
-        },
-      ],
+      // roles: [
+      //   {
+      //     roleName: 'Tester',
+      //     value: 'test',
+      //   },
+      // ],
     },
   ];
 }

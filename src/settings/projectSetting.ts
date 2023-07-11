@@ -102,8 +102,8 @@ const setting: ProjectConfig = {
     // Menu type
     type: MenuTypeEnum.MIX,
     // Menu theme
-    theme: ThemeEnum.DARK,
-    // Split menu
+    theme: ThemeEnum.LIGHT,
+    // 分割菜单
     split: false,
     // Top menu layout
     topMenuAlign: 'start',

@@ -5,44 +5,44 @@ import { FormSchema } from '/@/components/Table';
 export const columns: BasicColumn[] = [
   {
     title: '任务名称',
-    dataIndex: 'avatar',
+    dataIndex: 'taskName',
     minWidth: 100
   },
   {
     title: '单号',
-    dataIndex: 'username',
+    dataIndex: 'businessKey',
     minWidth: 120
   },
   {
     title: '关联单号',
-    dataIndex: 'realName',
+    dataIndex: 'parentBusinessKey',
     minWidth: 120
   },
   {
     title: '创建时间',
-    dataIndex: 'phone',
+    dataIndex: 'createTime',
     minWidth: 150
   },
   {
     title: '流程名称',
-    dataIndex: 'roles',
+    dataIndex: 'processDefinitionName',
     minWidth: 200
   },
 ];
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'username',
+    field: 'taskDefinitionKeys',
     label: '任务节点',
     component: 'Input'
   },
   {
-    field: 'realName',
+    field: 'serialNo',
     label: '单号',
     component: 'Input'
   },
   {
-    field: 'name',
+    field: 'serialNo',
     label: '关联单号',
     component: 'Input'
   }

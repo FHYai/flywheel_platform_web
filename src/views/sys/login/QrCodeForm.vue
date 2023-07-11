@@ -17,10 +17,11 @@
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useLoginState, LoginStateEnum } from './useLogin';
   import { useUserStore } from '/@/store/modules/user';
-  import { getToken } from '/@/utils/auth';
+  import {useMessage} from "@/hooks/web/useMessage";
 
   const { t } = useI18n();
   let logging = ref(false);
+  const { notification, createMessage } = useMessage();
   const { getLoginState } = useLoginState();
   const userStore = useUserStore();
 
@@ -33,7 +34,7 @@
   /**
    * 二维码展示
    */
-  function showQrCode() {
+  async function showQrCode() {
     let search = window.location.href.split("?")[1];
     if (search === undefined || search.indexOf('redirect') !== -1) {
       logging.value = false;
@@ -41,15 +42,24 @@
     } else {
       logging.value = true;
       const code = search.split("=")[1];
-      userStore.login({
-        code,
-        mode: 'message', //不要默认的错误提示
-      }).then(result => {
-        console.log(result)
-      }).catch(err => {
+      try {
+        const userInfo = await userStore.login({
+          code,
+          mode: 'none', //不要默认的错误提示
+        });
+        if (userInfo) {
+          notification.success({
+            message: t('sys.login.loginSuccessTitle'),
+            description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.userName}`,
+            duration: 3,
+          });
+        }
+      } catch (error) {
+        createMessage.error((error as unknown as Error).message)
+      } finally {
         logging.value = false;
         getQrPic();
-      });
+      }
     }
   }
   /**

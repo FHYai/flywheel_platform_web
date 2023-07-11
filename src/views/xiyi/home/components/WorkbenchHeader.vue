@@ -3,7 +3,7 @@
     <div class="lg:flex lg:items-center">
       <Avatar :src="userinfo.avatar || headerImg" :size="72" class="!mx-auto !block" />
       <div class="md:ml-6 flex flex-col justify-center md:mt-0 mt-2">
-        <h1 class="md:text-lg text-md text-center lg:text-left">{{ `${information.text}，${userinfo.realName}` }}</h1>
+        <h1 class="md:text-lg text-md text-center lg:text-left">{{ `${information.text}，${userinfo.userName}` }}</h1>
         <h1 class="md:text-lg text-md text-center lg:text-left mb-0">{{ information.content }}</h1>
       </div>
     </div>
@@ -15,16 +15,16 @@
       </div>
     </div>
     <div class="flex justify-end md:mt-0 mt-4">
-      <div class="flex flex-col align-center justify-center text-right">
+      <div class="flex flex-col align-center justify-center text-center">
         <span class="text-secondary">待办</span>
-        <span class="text-2xl">10</span>
+        <span class="text-2xl">{{ total }}</span>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
   import axios from 'axios';
-  import {computed, onMounted, ref} from 'vue';
+  import {computed, onMounted, ref, defineProps} from 'vue';
   import { Avatar } from 'ant-design-vue';
   import { useUserStore } from '/@/store/modules/user';
   import headerImg from '/@/assets/images/header.jpg';
@@ -37,6 +37,11 @@
   import windy from '/@/assets/images/weather/windy.png';
   import { setCookie,getCookie } from "@/utils/docCookies";
   import {isEmpty} from "@/utils/is";
+  import {propTypes} from "@/utils/propTypes";
+
+  const props = defineProps({
+    total: propTypes.Number,
+  })
 
   const isNight = ref(false);
   // 今日天气
