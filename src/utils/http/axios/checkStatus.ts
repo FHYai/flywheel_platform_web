@@ -37,7 +37,13 @@ export function checkStatus(
       }
       break;
     case 403:
+      userStore.setToken(undefined);
       errMessage = t('sys.api.errMsg403');
+      if (stp === SessionTimeoutProcessingEnum.PAGE_COVERAGE) {
+        userStore.setSessionTimeout(true);
+      } else {
+        userStore.logout(true);
+      }
       break;
     // 404请求不存在
     case 404:
